@@ -104,6 +104,7 @@ class Operations {
         int k = CommandExecution.set.size();
         synchronized (CommandExecution.set) {
             for (MusicBand band : CommandExecution.set) {
+                System.out.println(band.getOwner());
                 if (band.compareTo(targetBand) > 0 & band.getOwner().equals(command.getLogin())) {
                     TranslaterSQL.delete(band);
                     CommandExecution.set.remove(band);

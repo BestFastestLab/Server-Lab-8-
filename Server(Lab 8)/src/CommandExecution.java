@@ -117,22 +117,24 @@ public class CommandExecution {
         Operations.historyChange("remove_by_id");
     }
 
-    public static void addIfMax(Commands command1) throws Exception{
-            MusicBand t = Operations.getMax();
-            MusicBand p = Operations.creatingNewBandStep2(command1).getBand();
-            if (set.size() > 0 && p.compareTo(t) < 0) {
-                command1.setResult("Увы, введенный вами элемент не будет самым большим в коллекции");
-            } else {
-                TranslaterSQL.insertBand(p);
-                set.add(TranslaterSQL.getLastAdded());
-                command1.setResult("Элемент успешно добавлен");
-            }
-            Operations.historyChange("add_if_max");
+    public static void addIfMax(Commands command1) throws Exception {
+        MusicBand t = Operations.getMax();
+        MusicBand p = Operations.creatingNewBandStep2(command1).getBand();
+        if (set.size() > 0 && p.compareTo(t) < 0) {
+            command1.setResult("Увы, введенный вами элемент не будет самым большим в коллекции");
+        } else {
+            TranslaterSQL.insertBand(p);
+            set.add(TranslaterSQL.getLastAdded());
+            command1.setResult("Элемент успешно добавлен");
         }
+        Operations.historyChange("add_if_max");
+    }
 
     public static Commands removeGreater(Commands command1) {
-            command1.setResult("Было удалено " + Operations.removingGreater(Operations.creatingNewBandStep2(command1).getBand(), command1) + " объектов по вашему запросу");
-            Operations.historyChange("remove_greater");
+        System.out.println("Получил: "+command1);
+        command1.setResult("Было удалено " + Operations.removingGreater(Operations.creatingNewBandStep2(command1).getBand(), command1) + " объектов по вашему запросу");
+        System.out.println("ГОВНО: "+command1);
+        Operations.historyChange("remove_greater");
         return command1;
     }
 

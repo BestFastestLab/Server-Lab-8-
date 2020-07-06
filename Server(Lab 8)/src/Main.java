@@ -131,7 +131,7 @@ public class Main implements Runnable {
                 socketAddress = datagramChannel.receive(byteBuffer);//получаем запрос от клиента
                 Commands command = (Commands) deserialize(b);
                 command = Identifier.Identify(command);
-
+                System.out.println(command);
                 send(command, datagramChannel, socketAddress);
             }
         });
